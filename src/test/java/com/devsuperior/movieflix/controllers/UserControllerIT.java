@@ -42,7 +42,7 @@ public class UserControllerIT {
 		memberPassword = "123456";
 	}
 	
-	@Test
+	@Test	//  o perfil deve retornar quando o visitante for registrado
 	public void getProfileShouldReturnSelfWhenVisitorLogged() throws Exception {
 		
 		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
@@ -58,7 +58,7 @@ public class UserControllerIT {
 		result.andExpect(jsonPath("$.email").value(visitorUsername));
 	}
 
-	@Test
+	@Test	//	O Perfil Deve Retornar Próprio Quando MemberLogged
 	public void getProfileShouldReturnSelfWhenMemberLogged() throws Exception {
 		
 		String accessToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);
@@ -74,7 +74,7 @@ public class UserControllerIT {
 		result.andExpect(jsonPath("$.email").value(memberUsername));
 	}
 
-	@Test
+	@Test	//  o perfil deve retornar não autorizado quando nenhum usuário estiver logado
 	public void getProfileShouldReturnUnauthorizedWhenNoUserLogged() throws Exception {
 		
 		ResultActions result =
